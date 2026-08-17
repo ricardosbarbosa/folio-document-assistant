@@ -9,7 +9,7 @@ export async function GET() {
     capabilities: {
       generation: config.hasOpenAI && !config.demoMode,
       persistence: config.hasDatabase && !config.demoMode,
-      uploads: config.hasDatabase && config.hasOpenAI && !config.demoMode,
+      uploads: config.hasDatabase && config.hasOpenAI && !config.demoMode && config.uploadsEnabled,
       seededCorpus: !config.hasDatabase || config.demoMode,
     },
   });

@@ -15,6 +15,9 @@ const suggestions = [
   "Who is this product designed for?",
 ];
 
+const uploadsUnavailableMessage =
+  "Uploads are disabled in this public workspace. Run the project locally to test document ingestion.";
+
 function formatBytes(value: number) {
   if (value < 1024) return `${value} B`;
   return `${(value / 1024).toFixed(1)} KB`;
@@ -132,7 +135,7 @@ export function Workbench() {
 
   async function upload(file: File) {
     if (!health?.capabilities.uploads) {
-      setNotice("Connect PostgreSQL to enable uploads. You can explore the seeded documents now.");
+      setNotice(uploadsUnavailableMessage);
       return;
     }
     setIsUploading(true);
@@ -187,7 +190,7 @@ export function Workbench() {
             className="upload-card"
             onClick={() => {
               if (!health?.capabilities.uploads) {
-                setNotice("Connect PostgreSQL to enable uploads. You can explore the seeded documents now.");
+                setNotice(uploadsUnavailableMessage);
                 return;
               }
               fileInput.current?.click();

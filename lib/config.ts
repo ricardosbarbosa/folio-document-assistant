@@ -5,6 +5,7 @@ export const config = {
   hasOpenAI: Boolean(process.env.OPENAI_API_KEY),
   hasDatabase: Boolean(process.env.DATABASE_URL),
   demoMode: process.env.DEMO_MODE === "true",
+  uploadsEnabled: process.env.ENABLE_PUBLIC_UPLOADS === "true",
 };
 
 export function runtimeMode() {

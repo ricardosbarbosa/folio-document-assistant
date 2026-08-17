@@ -4,6 +4,20 @@ Folio is an evidence first document assistant built as a portfolio project. It l
 
 The project narrative is intentionally accurate: it shows a senior full stack engineer applying existing product and systems experience while developing practical skills in retrieval, model integration, evaluation, and trustworthy AI interaction design. It does not claim long term AI engineering experience.
 
+## Live demonstration
+
+Explore the public workspace at [folio-document-assistant.vercel.app](https://folio-document-assistant.vercel.app).
+
+The public deployment is read only. It demonstrates retrieval, cited generation, and quality inspection with curated portfolio documents while preventing visitors from adding private files. Run the project locally with `ENABLE_PUBLIC_UPLOADS=true` to exercise the complete ingestion path.
+
+![Folio answering a retrieval question with citations and a quality ledger](docs/images/folio_answer_workspace.png)
+
+Try these questions:
+
+* How does the retrieval architecture work?
+* How is response quality evaluated?
+* Who is this product designed for?
+
 ## What is implemented
 
 * Next.js App Router and strict TypeScript
@@ -18,6 +32,7 @@ The project narrative is intentionally accurate: it shows a senior full stack en
 * Versioned evaluation benchmark and release gate
 * Unit and Playwright browser coverage
 * Seeded portfolio mode when PostgreSQL is not connected
+* Read only public workspace with explicit upload controls
 
 ## Run locally
 
@@ -72,6 +87,7 @@ The answer and its evaluation are stored with model, latency, and source lineage
 | `DATABASE_URL` | PostgreSQL connection string |
 | `DIRECT_DATABASE_URL` | Direct PostgreSQL connection used by migrations |
 | `DEMO_MODE` | Forces deterministic seeded behavior for tests |
+| `ENABLE_PUBLIC_UPLOADS` | Enables document uploads explicitly, disabled by default |
 
 The key is server only. It is never sent to the browser or included in logs.
 
@@ -80,6 +96,8 @@ The key is server only. It is never sent to the browser or included in logs.
 This workspace is connected to the dedicated Neon project `gentle-water-90176659` in `aws-us-east-1`, using PostgreSQL 17. Runtime requests use the pooled URL and migrations use the direct URL. Both credentials are stored only in the ignored `.env.local` file with restricted permissions.
 
 Use `npm run db:verify` to check the extension, schema, vector dimensions, similarity operator, and persisted record counts without printing credentials. Use `npm run db:rotate:password` if the local role credential must be replaced.
+
+The public library can be replaced with the curated portfolio corpus by running `CONFIRM_PUBLIC_LIBRARY_RESET=RESET npm run db:public:reset`. This command permanently removes existing documents, answers, and evaluations, so inspect the target database before using it.
 
 ## Engineering documentation
 

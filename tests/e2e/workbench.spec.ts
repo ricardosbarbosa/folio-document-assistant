@@ -19,8 +19,8 @@ test("streams a cited answer and exposes quality evidence", async ({ page }) => 
   await expect(page.getByText(/match/)).toBeVisible();
 });
 
-test("explains why uploads are unavailable without PostgreSQL", async ({ page }) => {
+test("explains why uploads are unavailable in the public workspace", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: /Add a document/i }).click();
-  await expect(page.getByRole("status")).toContainText("Connect PostgreSQL");
+  await expect(page.getByRole("status")).toContainText("Uploads are disabled in this public workspace");
 });

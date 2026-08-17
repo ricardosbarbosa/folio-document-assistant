@@ -14,6 +14,7 @@
     "db:configure:neon": "tsx scripts/configure-neon.ts",
     "db:migrate": "tsx scripts/migrate.ts",
     "db:rotate:password": "tsx scripts/rotate-db-password.ts",
+    "db:public:reset": "tsx scripts/reset_public_library.ts",
     "db:verify": "tsx scripts/verify-db.ts",
     "eval": "tsx scripts/run-evals.ts"
   },

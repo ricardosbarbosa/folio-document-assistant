@@ -7,6 +7,12 @@ export const runtime = "nodejs";
 export const maxDuration = 60;
 
 export async function POST(request: Request) {
+  if (!config.uploadsEnabled) {
+    return Response.json(
+      { error: "Uploads are disabled in this public workspace. Run the project locally to test document ingestion." },
+      { status: 403 },
+    );
+  }
   if (config.demoMode || !config.hasDatabase) {
     return Response.json(
       { error: "Connect PostgreSQL to enable persistent uploads. The seeded corpus remains available." },

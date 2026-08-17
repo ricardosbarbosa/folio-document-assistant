@@ -24,3 +24,11 @@ test("explains why uploads are unavailable in the public workspace", async ({ pa
   await page.getByRole("button", { name: /Add a document/i }).click();
   await expect(page.getByRole("status")).toContainText("Uploads are disabled in this public workspace");
 });
+
+test("rejects direct upload requests in the public workspace", async ({ request }) => {
+  const response = await request.post("/api/documents/upload");
+  expect(response.status()).toBe(403);
+  await expect(response.json()).resolves.toMatchObject({
+    error: expect.stringContaining("Uploads are disabled in this public workspace"),
+  });
+});

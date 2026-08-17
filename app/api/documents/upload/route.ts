@@ -1,7 +1,4 @@
 import { config } from "@/lib/config";
-import { extractDocument } from "@/lib/documents";
-import { getOpenAI } from "@/lib/openai";
-import { insertDocument } from "@/lib/repository";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -19,6 +16,11 @@ export async function POST(request: Request) {
       { status: 503 },
     );
   }
+  const [{ extractDocument }, { getOpenAI }, { insertDocument }] = await Promise.all([
+    import("@/lib/documents"),
+    import("@/lib/openai"),
+    import("@/lib/repository"),
+  ]);
   const openai = getOpenAI();
   if (!openai) return Response.json({ error: "OpenAI is not configured" }, { status: 503 });
 

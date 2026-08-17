@@ -1,0 +1,42 @@
+{
+  "name": "folio-document-assistant",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "db:configure:neon": "tsx scripts/configure-neon.ts",
+    "db:migrate": "tsx scripts/migrate.ts",
+    "db:rotate:password": "tsx scripts/rotate-db-password.ts",
+    "db:verify": "tsx scripts/verify-db.ts",
+    "eval": "tsx scripts/run-evals.ts"
+  },
+  "dependencies": {
+    "mammoth": "^1.10.0",
+    "next": "^16.1.0",
+    "openai": "^6.16.0",
+    "pdf-parse": "^2.4.5",
+    "pg": "^8.16.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.58.0",
+    "@types/node": "^24.10.0",
+    "@types/pg": "^8.15.6",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "^16.1.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.0"
+  }
+}

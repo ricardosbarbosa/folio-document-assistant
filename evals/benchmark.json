@@ -1,0 +1,20 @@
+[
+  {
+    "id": "retrieval_architecture",
+    "question": "How does the retrieval architecture work?",
+    "expectedDocument": "Retrieval architecture.md",
+    "requiredTerms": ["embedding", "HNSW", "cosine"]
+  },
+  {
+    "id": "quality_method",
+    "question": "How is response quality evaluated?",
+    "expectedDocument": "Quality evaluation plan.txt",
+    "requiredTerms": ["groundedness", "citation", "relevance"]
+  },
+  {
+    "id": "product_audience",
+    "question": "Who is this product designed for and what do they need?",
+    "expectedDocument": "Product discovery brief.txt",
+    "requiredTerms": ["analysts", "verify", "source"]
+  }
+]
